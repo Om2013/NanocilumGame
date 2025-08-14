@@ -1,5 +1,4 @@
 import pygame
-import time 
 from nanobot import NanoBot  # Import the NanoBot class
 from bacteria import Bacteria
 
