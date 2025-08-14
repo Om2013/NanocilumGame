@@ -5,6 +5,9 @@ from bacteria import Bacteria
 # Initialize Pygame
 pygame.init()
 
+pygame.mixer.music.load("music_nanocilum.mpeg") 
+pygame.mixer.music.play(-1)
+
 # Screen settings
 WINDOW_WIDTH = 1200
 WINDOW_HEIGHT = 700
@@ -41,11 +44,11 @@ spacing_x = 60  # Horizontal - spacing between bacteria
 spacing_y = 70  # Vertical - spacing between rows
 
 for row in range(num_rows):
-    for col in range(num_cols):
-        x = start_x + col * spacing_x
-        y = start_y + row * spacing_y
-        bacteria = Bacteria(x, y, 2, bacteria_laser_group,bacteria_group)
-        bacteria_group.add(bacteria)
+    for col in range(num_cols): 
+        x = start_x + col * spacing_x # Horizontal distance between bacteria
+        y = start_y + row * spacing_y  # Vertical distance between bacteria
+        bacteria = Bacteria(x, y, 2, bacteria_laser_group,bacteria_group)  # X,Y , Speed is 2 
+        bacteria_group.add(bacteria)  # Add the bacteria to bacteria_groyup()
 gameover=False
 game_win=False
 running = True
@@ -68,8 +71,8 @@ while running:
     # Draw on screen
     screen.blit(score_text, score_rect)
     screen.blit(lives_text, lives_rect)
-    pygame.draw.line(screen, WHITE, (0, 50), (WINDOW_WIDTH, 50), 4)
-    pygame.draw.line(screen, WHITE, (0, WINDOW_HEIGHT - 100), (WINDOW_WIDTH, WINDOW_HEIGHT - 100), 4)
+    pygame.draw.line(screen, WHITE, (0, 50), (WINDOW_WIDTH, 50), 4) # Draw on the screen in white color (x=0 , y=50) 4 - Pen Thickness
+    pygame.draw.line(screen, WHITE, (0, WINDOW_HEIGHT - 100), (WINDOW_WIDTH, WINDOW_HEIGHT - 100), 4) 
     
     # Render text
     
@@ -83,7 +86,6 @@ while running:
     bacteria_group.update()
     bacteria_group.draw(screen)
 
-    
     bacteria_laser_group.update()
     bacteria_laser_group.draw(screen)
 
@@ -104,7 +106,7 @@ while running:
             breach_sound.play()
             gameover=True
         
-    if nanobot.score==4400:
+    if nanobot.score==3600:
         game_win=True
         gamewin_text=font.render("Congrats! You Win!",True,WHITE)
         gamewin_text_Rect=gamewin_text.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2))
